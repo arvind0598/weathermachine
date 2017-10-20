@@ -1,0 +1,15 @@
+body
+{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #9E9E9E;
+}
+
+h1
+{
+  font-family: 'Overlock', cursive;
+  font-size: 10vh;
+  text-align: center;
+  color: white;
+}
