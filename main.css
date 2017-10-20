@@ -1,15 +1,27 @@
 body
 {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   background-color: #9E9E9E;
 }
 
 h1
 {
+  line-height: 80vh;
   font-family: 'Overlock', cursive;
   font-size: 10vh;
   text-align: center;
   color: white;
+}
+
+footer
+{
+  width: 100vw;
+  position: fixed;
+  bottom: 0;
+  text-align: center;
+}
+
+p
+{
+  font-family: monospace;
+  color: rgba(0,0,0,0.5);
 }
