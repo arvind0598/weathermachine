@@ -1,37 +1,106 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans|Raleway:300');
+@import url('https://fonts.googleapis.com/css?family=Codystar:300');
+
+*
+{
+	user-select: none;
+}
+
 body
 {
-  background-color: #9E9E9E;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
+	margin: 0;
+
+	background: black;
+	/*background-image: linear-gradient(to right, #FFFFFF,#000000);*/
+	background-size:800% 800%;
+	animation: coolback 10s infinite;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+	overflow: hidden;
+}
+
+@keyframes coolback
+{
+	0%{background-position:0% 50%}
+	50%{background-position:100% 50%}
+	100%{background-position:0% 50%}
+}
+
+section
+{
+	background: white;
+	height: 70vh;
+	width: 40vw;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	position: relative;
 }
 
 h1
 {
-  font-family: 'Overlock', cursive;
-  font-size: 10vh;
-  text-align: center;
-  color: white;
+	font-family: 'Codystar', cursive;
+	letter-spacing: 1vw;
+	text-align: center;
+
+	font-size: 6vw;
+	margin: 0;
+
+	position: absolute;
+	top: 10vh;
+
 }
 
 h2
 {
-  text-align: center;
-  font-family: monospace;
-  color: rgba(0,0,0,0.5);
-}
-
-footer
-{
-  width: 100vw;
-  position: fixed;
-  bottom: 0;
-  text-align: center;
+	font-family: 'Raleway', sans-serif;
+	text-align: center;
 }
 
 p
 {
-  font-family: monospace;
-  color: rgba(0,0,0,0.5);
+	font-family: 'Raleway', sans-serif;
+	text-align: center;
+
+	position: absolute;
+	bottom: 0;
+	margin: 1px;	
+}	
+
+input
+{
+	visibility: hidden;
+}
+
+.switch
+{
+	width: 40px;
+	height: 20px;
+	background-color: black;
+	border-radius: 2px;
+	transition: all 500ms ease;
+	cursor: pointer;
+}
+
+input:checked + .switch
+{
+	left: 20px;
+}
+
+@media only screen and (max-width: 425px)
+{
+	section
+	{
+		width: 90vw;
+	}
+
+	h1
+	{
+		font-size: 20vw;
+	}
+
 }
