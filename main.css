@@ -78,18 +78,27 @@ input
 
 .switch
 {
+	background-color: #CBE5F8;
+	border: solid 1px #7EC0EE;
+	border-radius: 0 30% 30% 0;
 	width: 40px;
-	height: 20px;
-	background-color: black;
-	border-radius: 2px;
-	transition: all 500ms ease;
-	cursor: pointer;
+	height: 30px;
+	transition: 200ms ease all;
+	margin-left: 40px;
+	margin-right: 0px; 
 }
 
 input:checked + .switch
 {
-	left: 20px;
+	background-color: #7EC0EE;
+	border: solid 1px #CBE5F8;
+	border-radius: 30% 0 0 30%;
+	width: 40px;
+	height: 30px;
+	margin-right: 40px;
+	margin-left: 0px; 
 }
+
 
 @media only screen and (max-width: 425px)
 {
@@ -102,5 +111,4 @@ input:checked + .switch
 	{
 		font-size: 20vw;
 	}
-
 }

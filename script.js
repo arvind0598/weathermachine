@@ -56,7 +56,7 @@ $(document).ready(function()
         else if(status >= 200)
           document.body.style.backgroundImage = 'linear-gradient(to left, #2d3656, #273440, #2fced2 , #16171c)';
       });
-    });
+    });    
   } 
   else console.log("Could not obtain location");
 });
