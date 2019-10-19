@@ -4,13 +4,14 @@
     </div>
 </template>
 
-<script>
+<script lang="ts">
+import Vue from 'vue';
 
-export default {
-    data() {
-        return {}
-    }
-}
+export default Vue.extend({
+  data() {
+    return {};
+  },
+});
 </script>
 
 <style>
