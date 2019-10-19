@@ -1,0 +1,31 @@
+{
+  "name": "weathermachine",
+  "version": "1.0.0",
+  "description": "",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "clean": "rm -rf .cache dist",
+    "start": "npm run clean && parcel src/index.html",
+    "build": "npm run clean && parcel build src/index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/arvind0598/weathermachine.git"
+  },
+  "author": "arvind0598",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/arvind0598/weathermachine/issues"
+  },
+  "homepage": "https://github.com/arvind0598/weathermachine#readme",
+  "dependencies": {
+    "parcel-bundler": "^1.12.4",
+    "vue": "^2.6.10",
+    "vue-hot-reload-api": "^2.3.4"
+  },
+  "devDependencies": {
+    "@vue/component-compiler-utils": "^3.0.0",
+    "vue-template-compiler": "^2.6.10"
+  }
+}
