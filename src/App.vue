@@ -1,17 +1,12 @@
-<template lang="html">
-    <div class="hero is-fullheight">
-      <div class="hero-body">
-        <div class="container">
-          <div class="columns is-vcentered">
-              <div class="column"></div>
-              <div class="column">
-                <sample-component/>
-              </div>
-              <div class="column"></div>
-          </div>
-        </div>
-      </div>
-    </div>
+<template lang="pug">
+  .hero.is-fullheight
+    .hero-body
+      .container
+        .columns.is-vcentered
+          .column
+          .column
+            sample-component
+          .column
 </template>
 
 <script lang="ts">
