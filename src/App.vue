@@ -5,13 +5,13 @@
         .columns.is-vcentered
           .column
           .column
-            sample-component
+            weather-card
           .column
 </template>
 
 <script lang="ts">
 import Vue from 'vue';
-import SampleComponent from './components/SampleComponent.vue';
+import WeatherCard from './components/WeatherCard.vue';
 import getUserLocation from './scripts/getUserLocation';
 import fetchWeatherData from './scripts/fetchWeatherData';
 
@@ -20,7 +20,7 @@ export default Vue.extend({
     return {};
   },
   components: {
-    SampleComponent,
+    WeatherCard,
   },
   beforeMount: () => {
     getUserLocation(fetchWeatherData, null);
