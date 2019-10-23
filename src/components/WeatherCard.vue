@@ -12,10 +12,14 @@
         br
         br
       time(v-bind:datetime="currentDate") {{ currentDateTime}}
+    footer.card-footer
+      a(href='#').card-footer-item View Source
+      units-card-action(:isCelsius="true")
 </template>
 
 <script lang="ts">
 import Vue from 'vue';
+import UnitsCardAction from './UnitsCardAction.vue';
 
 export default Vue.extend({
   data() {
@@ -23,6 +27,10 @@ export default Vue.extend({
       temperatureInfo: 'Grant Location permissions.',
       weatherInfo: 'Seems to be pretty cloudy. Gib permission.',
     };
+  },
+  props: {
+    temperature: Number,
+    location: String,
   },
   computed: {
     currentDate() {
@@ -35,6 +43,9 @@ export default Vue.extend({
       });
       return `${this.currentDate}, ${currentTime}`;
     },
+  },
+  components: {
+    UnitsCardAction,
   },
 });
 </script>
