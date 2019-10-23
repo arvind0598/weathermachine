@@ -3,13 +3,18 @@ import React from 'react';
 import { HelloMessageProps } from '../types';
 
 class HelloMessage extends React.Component<HelloMessageProps, {}> {
-    render() {
-        return (
-            <div>
-                { `${this.props.message}, ${this.props.name}`}
-            </div>
-        )
-    }
-};
+  getMessage(): string {
+    const { message, name } = this.props;
+    return `${message}, ${name}`;
+  }
+
+  render() {
+    return (
+      <div>
+        { this.getMessage() }
+      </div>
+    );
+  }
+}
 
 export default HelloMessage;
