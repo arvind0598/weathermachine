@@ -5,7 +5,7 @@
         .columns.is-vcentered
           .column
           .column
-            weather-card
+            weather-card(v-bind:data="weatherData")
           .column
 </template>
 
@@ -17,7 +17,9 @@ import fetchWeatherData from './scripts/fetchWeatherData';
 
 export default Vue.extend({
   data() {
-    return {};
+    return {
+      weatherData: null,
+    };
   },
   components: {
     WeatherCard,
