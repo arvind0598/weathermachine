@@ -8,8 +8,8 @@
     "clean": "rm -rf .cache dist",
     "start": "npm run clean && parcel src/index.html",
     "build": "npm run clean && parcel build src/index.html --no-source-maps --experimental-scope-hoisting",
-    "lint": "eslint ./src/**/*.tsx",
-    "lintfix": "eslint ./src/**/*.tsx --fix"
+    "lint": "eslint ./src --ext .tsx",
+    "lintfix": "eslint ./src --ext .tsx --fix"
   },
   "repository": {
     "type": "git",
