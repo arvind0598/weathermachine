@@ -1,20 +1,31 @@
 import React from 'react';
+import CardComponent from './CardComponent';
 
-import { HelloMessageProps } from '../types';
+const getCurrentDateString = (): string => {
+  const dateOptions: Intl.DateTimeFormatOptions = {
+    year: 'numeric',
+    month: 'long',
+    day: '2-digit',
+    hour: '2-digit',
+    minute: '2-digit',
+  };
+  return new Date().toLocaleString('en-US', dateOptions);
+};
 
-class HelloMessage extends React.Component<HelloMessageProps, {}> {
-  getMessage(): string {
-    const { message, name } = this.props;
-    return `${message}, ${name}`;
-  }
-
-  render() {
-    return (
-      <div>
-        { this.getMessage() }
+const AppComponent = () => (
+  <div className="hero is-bold is-fullheight">
+    <div className="hero-body">
+      <div className="container">
+        <div className="columns is-vcentered">
+          <div className="column" />
+          <div className="column">
+            <CardComponent temperature={21} location="Udupi" currentDate={getCurrentDateString()} />
+          </div>
+          <div className="column" />
+        </div>
       </div>
-    );
-  }
-}
+    </div>
+  </div>
+);
 
-export default HelloMessage;
+export default AppComponent;
