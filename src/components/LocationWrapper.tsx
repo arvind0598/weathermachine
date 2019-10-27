@@ -1,6 +1,7 @@
 import React from 'react';
 import { LocationFetchStatus } from '../types';
 import { LocationProvider } from '../context/LocationContext';
+import { getDisplayName } from '../utils';
 
 type LocationWrapperState = {
   status: LocationFetchStatus;
@@ -13,7 +14,6 @@ type LocationWrapperProps = {
   API_KEY: string;
 };
 
-const getDisplayName = (component) => (component.displayName || component.name || 'Component');
 
 const LocationWrapper = (WrappedComponent) => {
   class LocationWrapper extends React.Component<LocationWrapperProps, LocationWrapperState> {
