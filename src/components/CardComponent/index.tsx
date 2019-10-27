@@ -14,7 +14,7 @@ class CardComponent extends React.Component<CardComponentProps, CardComponentSta
 
   render() {
     const { temperatureInfo, weatherInfo } = this.state;
-    const { currentDate } = this.props;
+    const { location, currentDate } = this.props;
     return (
       <div className="card">
         <div className="card-content">
@@ -27,12 +27,12 @@ class CardComponent extends React.Component<CardComponentProps, CardComponentSta
             <div className="media-content">
               <p className="title is-4"> The Weather Machine </p>
               <p className="subtitle is-6">
-                {temperatureInfo}
+                {location}
               </p>
             </div>
           </div>
           <div className="content">
-            {weatherInfo}
+            {`${temperatureInfo}, ${weatherInfo}`}
             <br />
             <br />
           </div>
