@@ -23,4 +23,4 @@ export type TemperatureState = TemperatureProps;
 
 // LOCATION WRAPPER
 
-export type LocationFetchStatus = 'REQUESTING' | 'FETCHED' | 'DENIED' | 'FETCHING';
+export type LocationFetchStatus = 'REQUESTING' | 'FETCHED' | 'FETCH_FAILED' | 'DENIED' | 'FETCHING';
