@@ -1,3 +1,5 @@
+// CARD COMPONENT
+
 export type CardComponentProps = {
   temperature: number;
   location: string;
@@ -9,6 +11,8 @@ export type CardComponentState = {
   weatherInfo: string;
 };
 
+// SWITCH COMPONENT
+
 export type TemperatureUnits = 'CELSIUS' | 'FARENHEIT';
 
 export type TemperatureProps = {
@@ -16,3 +20,7 @@ export type TemperatureProps = {
 };
 
 export type TemperatureState = TemperatureProps;
+
+// LOCATION WRAPPER
+
+export type LocationFetchStatus = 'REQUESTING' | 'FETCHED' | 'DENIED' | 'FETCHING';
