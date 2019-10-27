@@ -1,5 +1,8 @@
 import React from 'react';
 import CardComponent from './CardComponent';
+import LocationCardWrapper from './CardComponent/LocationWrapper';
+
+const LocationEnhancedCard = LocationCardWrapper(CardComponent);
 
 const getCurrentDateString = (): string => {
   const dateOptions: Intl.DateTimeFormatOptions = {
@@ -19,7 +22,7 @@ const AppComponent = () => (
         <div className="columns is-vcentered">
           <div className="column" />
           <div className="column">
-            <CardComponent temperature={21} location="Udupi" currentDate={getCurrentDateString()} />
+            <LocationEnhancedCard currentDate={getCurrentDateString()} />
           </div>
           <div className="column" />
         </div>
