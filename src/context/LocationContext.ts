@@ -1,9 +1,13 @@
 import React from 'react';
+import { LocationFetchStatus } from '../types';
 
-const LocationContext = React.createContext({});
+export type LocationContextType = {
+  status?: LocationFetchStatus;
+  data?: Object;
+};
+
+const LocationContext = React.createContext<LocationContextType | null>(null);
 LocationContext.displayName = 'LocationContext';
 
 export const LocationProvider = LocationContext.Provider;
 export const LocationConsumer = LocationContext.Consumer;
-
-export default LocationContext;

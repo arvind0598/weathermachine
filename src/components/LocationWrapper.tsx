@@ -1,6 +1,6 @@
 import React from 'react';
 import { LocationFetchStatus } from '../types';
-import { LocationProvider } from '../context/LocationContext';
+import { LocationProvider, LocationContextType } from '../context/LocationContext';
 import { getDisplayName } from '../utils';
 
 type LocationWrapperState = {
@@ -16,7 +16,7 @@ type LocationWrapperProps = {
 
 
 const LocationWrapper = (WrappedComponent) => {
-  class LocationWrapper extends React.Component<LocationWrapperProps, LocationWrapperState> {
+  class Wrapper extends React.Component<LocationWrapperProps, LocationWrapperState> {
     constructor(props) {
       super(props);
       this.state = {
@@ -40,7 +40,6 @@ const LocationWrapper = (WrappedComponent) => {
     }
 
     fetchWeatherData(data: Position) {
-      console.log(data);
       const { longitude, latitude } = data.coords;
       this.setState({
         status: 'FETCHING',
@@ -55,14 +54,12 @@ const LocationWrapper = (WrappedComponent) => {
       fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&APPID=${API_KEY}`)
         .then((data) => data.json())
         .then((data) => {
-          console.log(data);
           this.setState({
             status: 'FETCHED',
             weatherData: data,
           });
         })
         .catch((err) => {
-          console.log(err);
           this.setState({
             status: 'FETCH_FAILED',
           });
@@ -70,7 +67,6 @@ const LocationWrapper = (WrappedComponent) => {
     }
 
     handleDeniedLocation(err: PositionError) {
-      console.log(err);
       this.setState({
         status: 'DENIED',
       });
@@ -78,16 +74,17 @@ const LocationWrapper = (WrappedComponent) => {
 
     render() {
       const { status, weatherData } = this.state;
+      const contextValue: LocationContextType = { status, data: weatherData };
       return (
-        <LocationProvider value={weatherData}>
+        <LocationProvider value={contextValue}>
           <WrappedComponent status={status} />
         </LocationProvider>
       );
     }
   }
 
-  LocationWrapper.displayName = `LocationWrapper(${getDisplayName(WrappedComponent)})`;
-  return LocationWrapper;
+  Wrapper.displayName = `LocationWrapper(${getDisplayName(WrappedComponent)})`;
+  return Wrapper;
 };
 
 export default LocationWrapper;

@@ -1,8 +1,9 @@
 import React from 'react';
-import CardComponent from './CardComponent';
+// import CardComponent from './CardComponent';
+import CardFrame from './CardComponent/CardFrame';
 import LocationCardWrapper from './CardComponent/LocationWrapper';
 
-const LocationEnhancedCard = LocationCardWrapper(CardComponent);
+const LocationEnhancedCard = LocationCardWrapper(CardFrame);
 
 const getCurrentDateString = (): string => {
   const dateOptions: Intl.DateTimeFormatOptions = {
