@@ -10,9 +10,10 @@ class SwitchComponent extends React.Component<TemperatureProps, TemperatureState
     this.state = {
       unit: unit === 'FARENHEIT' ? 'CELSIUS' : 'FARENHEIT',
     };
+    this.switchUnits = this.switchUnits.bind(this);
   }
 
-  switchUnits(event: Event): void {
+  switchUnits(event: MouseEvent): void {
     event.preventDefault();
     this.setState((prevState) => ({
       unit: invertUnit(prevState.unit),
@@ -23,7 +24,7 @@ class SwitchComponent extends React.Component<TemperatureProps, TemperatureState
     const { unit } = this.state;
     return (
       // eslint-disable-next-line jsx-a11y/anchor-is-valid
-      <a href="#" className="card-footer-item is-capitalized">
+      <a href="#" className="card-footer-item is-capitalized" onClick={this.switchUnits}>
         Switch to {unit.toLowerCase()}
       </a>
     );
