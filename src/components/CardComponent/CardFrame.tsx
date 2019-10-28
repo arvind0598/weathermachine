@@ -24,7 +24,7 @@ const displayCardContent = (data: CardFrameProps) => {
       />
     );
   }
-  return <LoadingCard />;
+  return <LoadingCard status={data.status} />;
 };
 
 const displaySwitchComponent = (status: LocationFetchStatus) => {
