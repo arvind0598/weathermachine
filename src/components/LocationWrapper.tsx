@@ -14,10 +14,9 @@ type LocationWrapperProps = {
   API_KEY: string;
 };
 
-
 const LocationWrapper = (WrappedComponent) => {
   class Wrapper extends React.Component<LocationWrapperProps, LocationWrapperState> {
-    constructor(props) {
+    constructor(props: LocationWrapperProps) {
       super(props);
       this.state = {
         status: 'REQUESTING',
@@ -59,14 +58,14 @@ const LocationWrapper = (WrappedComponent) => {
             weatherData: data,
           });
         })
-        .catch((err) => {
+        .catch(() => {
           this.setState({
             status: 'FETCH_FAILED',
           });
         });
     }
 
-    handleDeniedLocation(err: PositionError) {
+    handleDeniedLocation() {
       this.setState({
         status: 'DENIED',
       });
