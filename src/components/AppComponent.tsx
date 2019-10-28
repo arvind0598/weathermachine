@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { LocationFetchStatus } from '../types';
+import { LocationFetchStatus, WeatherData } from '../types';
 import LocationContext, { LocationContextType } from '../context/LocationContext';
 import CardFrame from './CardComponent/CardFrame';
 
@@ -19,7 +19,7 @@ type AppComponentState = {
   status: LocationFetchStatus;
   longitude?: number;
   latitude?: number;
-  weatherData?: Object;
+  weatherData?: WeatherData;
 };
 
 type AppComponentProps = {
@@ -64,9 +64,16 @@ class AppComponent extends React.Component<AppComponentProps, AppComponentState>
     fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&APPID=${API_KEY}`)
       .then((data) => data.json())
       .then((data) => {
+        const weatherData: WeatherData = {
+          location: data.name,
+          temperature: data.main.temp,
+          weatherCode: data.weather[0].id,
+          weatherName: data.weather[0].main,
+          weatherIcon: data.weather[0].icon,
+        };
         this.setState({
           status: 'FETCHED',
-          weatherData: data,
+          weatherData,
         });
       })
       .catch(() => {
@@ -93,7 +100,7 @@ class AppComponent extends React.Component<AppComponentProps, AppComponentState>
               <div className="columns is-vcentered">
                 <div className="column" />
                 <div className="column">
-                  <CardFrame currentDate={getCurrentDateString()} status={status} />
+                  <CardFrame currentDate={getCurrentDateString()} />
                 </div>
                 <div className="column" />
               </div>

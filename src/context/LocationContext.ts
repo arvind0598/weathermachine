@@ -1,9 +1,9 @@
 import React from 'react';
-import { LocationFetchStatus } from '../types';
+import { LocationFetchStatus, WeatherData } from '../types';
 
 export type LocationContextType = {
   status?: LocationFetchStatus;
-  data?: Object;
+  data?: WeatherData;
 };
 
 const LocationContext = React.createContext<LocationContextType | null>(null);

@@ -11,7 +11,7 @@ const ReadyCard = (props: ReadyCardProps) => {
   return (
     <>
       <div className="content">
-        {`${temperatureInfo}, ${weatherInfo}`}
+        {`${weatherInfo}. ${temperatureInfo}`}
       </div>
       <time dateTime="null">
         {currentDate}

@@ -1,30 +1,27 @@
 /* eslint-disable react/prefer-stateless-function */
 import React from 'react';
 import LocationContext, { LocationContextType } from '../../context/LocationContext';
-import { CardComponentProps, LocationFetchStatus } from '../../types';
+import { LocationFetchStatus, WeatherData } from '../../types';
 import SwitchComponent from './SwitchComponent';
 import LoadingCard from './LoadingCard';
 import ReadyCard from './ReadyCard';
 
 type CardFrameProps = {
-  status: LocationFetchStatus;
   currentDate: string;
-  data?: CardComponentProps;
 };
 
-const displayCardContent = (data: CardFrameProps) => {
-  if (data.status === 'FETCHED') {
-    const temperatureInfo = 'Temperature Info.';
-    const weatherInfo = 'Seems to be pretty cloudy. Gib Permission.';
+const displayCardContent = (status: LocationFetchStatus, data: WeatherData, currentDate: string) => {
+  if (status === 'FETCHED') {
+    const temperatureInfo = `Seems to be about ${data.temperature} degrees outside.`;
     return (
       <ReadyCard
         temperatureInfo={temperatureInfo}
-        weatherInfo={weatherInfo}
-        currentDate={data.currentDate}
+        weatherInfo={data.weatherName}
+        currentDate={currentDate}
       />
     );
   }
-  return <LoadingCard status={data.status} />;
+  return <LoadingCard status={status} />;
 };
 
 const displaySwitchComponent = (status: LocationFetchStatus) => {
@@ -34,6 +31,10 @@ const displaySwitchComponent = (status: LocationFetchStatus) => {
   return null;
 };
 
+const getIconElement = (status: LocationFetchStatus, data: WeatherData) => {
+  if (status === 'FETCHED') return <img src={`http://openweathermap.org/img/wn/${data.weatherIcon}@2x.png`} alt={data.weatherName} />;
+  return <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder" />;
+};
 
 class CardFrameComponent extends React.Component<CardFrameProps, {}> {
   render() {
@@ -41,27 +42,30 @@ class CardFrameComponent extends React.Component<CardFrameProps, {}> {
       <LocationContext.Consumer>
         {
           (context: LocationContextType) => {
-            const { status } = context;
+            const { status, data } = context;
+            const { currentDate } = this.props;
             return (
               <div className="card">
                 <div className="card-content">
                   <div className="media">
                     <div className="media-left">
                       <figure className="image is-48x48">
-                        <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder" />
+                        {
+                          getIconElement(status, data)
+                        }
                       </figure>
                     </div>
                     <div className="media-content">
                       <p className="title is-4"> The Weather Machine </p>
                       <p className="subtitle is-6">
                         {
-                          status === 'FETCHED' ? 'Fixed Location' : 'Placeholder Location'
+                          status === 'FETCHED' ? data.location : 'Placeholder Location'
                         }
                       </p>
                     </div>
                   </div>
                   {
-                    displayCardContent(this.props)
+                    displayCardContent(status, data, currentDate)
                   }
                 </div>
                 <footer className="card-footer">
