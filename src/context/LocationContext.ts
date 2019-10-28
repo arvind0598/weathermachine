@@ -9,5 +9,4 @@ export type LocationContextType = {
 const LocationContext = React.createContext<LocationContextType | null>(null);
 LocationContext.displayName = 'LocationContext';
 
-export const LocationProvider = LocationContext.Provider;
-export const LocationConsumer = LocationContext.Consumer;
+export default LocationContext;
