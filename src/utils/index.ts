@@ -30,7 +30,7 @@ export const getTemperatureValues = (tempKelvin: number): Array<string> => {
 
 export const getWeatherClass = (weatherCode: number): string => {
   if (weatherCode === 800) {
-    return 'has-gradient-clear';
+    return 'has-gradient--clear';
   }
 
   const weatherGroup = Math.floor(weatherCode / 100);
@@ -43,5 +43,5 @@ export const getWeatherClass = (weatherCode: number): string => {
     case 8: weatherClass = 'clouds'; break;
     default: weatherClass = 'none';
   }
-  return `has-gradient-${weatherClass}`;
+  return `has-gradient--${weatherClass}`;
 };
