@@ -23,7 +23,7 @@ Currently uses the Bulma CSS CDN, might switch to the package later.
 
   
 
-First, get yourself a (free) API key from (OpenWeatherMap)[https://openweathermap.org/api].
+First, get yourself a (free) API key from [OpenWeatherMap](https://openweathermap.org/api).
 
 Clone this repository by doing ```git clone git@github.com:arvind0598/weathermachine.git```.
 
