@@ -36,7 +36,9 @@ class AppComponent extends React.Component<AppComponentProps, AppComponentState>
     this.getUserLocation = this.getUserLocation.bind(this);
     this.fetchWeatherData = this.fetchWeatherData.bind(this);
     this.handleDeniedLocation = this.handleDeniedLocation.bind(this);
+  }
 
+  componentDidMount() {
     this.getUserLocation(this.fetchWeatherData, this.handleDeniedLocation);
   }
 
