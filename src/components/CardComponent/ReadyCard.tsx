@@ -1,8 +1,9 @@
-import React, { useContext } from 'react';
-import UnitsContext from '../../context/UnitsContext';
+import React from 'react';
+import { TemperatureUnits } from '../../types';
 
 export type ReadyCardProps = {
   temperatureKelvin: number;
+  currentUnit: TemperatureUnits;
   weatherInfo: string;
   currentDate: string;
 };
@@ -15,14 +16,18 @@ const getTemperatureValues = (tempKelvin: number): Array<string> => {
 };
 
 const ReadyCard = (props: ReadyCardProps) => {
-  const { temperatureKelvin, weatherInfo, currentDate } = props;
+  const {
+    temperatureKelvin,
+    weatherInfo,
+    currentDate,
+    currentUnit,
+  } = props;
   const [tempCelsius, tempFarenheit] = getTemperatureValues(temperatureKelvin);
-  const tempUnit = useContext(UnitsContext);
 
   return (
     <>
       <div className="content">
-        {`${weatherInfo}. Seems to be about ${tempUnit === 'CELSIUS' ? tempCelsius : tempFarenheit} outside.`}
+        {`${weatherInfo}. Seems to be about ${currentUnit === 'CELSIUS' ? tempCelsius : tempFarenheit} outside.`}
       </div>
       <time dateTime="null">
         {currentDate}

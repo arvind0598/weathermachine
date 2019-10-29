@@ -1,7 +1,7 @@
 /* eslint-disable react/prefer-stateless-function */
 import React from 'react';
 import LocationContext, { LocationContextType } from '../../context/LocationContext';
-import { LocationFetchStatus, WeatherData } from '../../types';
+import { LocationFetchStatus, WeatherData, TemperatureUnits } from '../../types';
 import SwitchComponent from './SwitchComponent';
 import LoadingCard from './LoadingCard';
 import ReadyCard from './ReadyCard';
@@ -10,22 +10,35 @@ type CardFrameProps = {
   currentDate: string;
 };
 
-const displayCardContent = (status: LocationFetchStatus, data: WeatherData, currentDate: string) => {
+type CardFrameState = {
+  currentUnit: TemperatureUnits;
+  handleChange: Function;
+};
+
+const invertUnit = (unit: TemperatureUnits): TemperatureUnits => (unit === 'CELSIUS' ? 'FARENHEIT' : 'CELSIUS');
+
+const displayCardContent = (
+  status: LocationFetchStatus,
+  data: WeatherData,
+  currentDate: string,
+  currentUnit: TemperatureUnits,
+) => {
   if (status === 'FETCHED') {
     return (
       <ReadyCard
         temperatureKelvin={data.temperature}
         weatherInfo={data.weatherName}
         currentDate={currentDate}
+        currentUnit={currentUnit}
       />
     );
   }
   return <LoadingCard status={status} />;
 };
 
-const displaySwitchComponent = (status: LocationFetchStatus) => {
+const displaySwitchComponent = (status: LocationFetchStatus, stateData: CardFrameState) => {
   if (status === 'FETCHED') {
-    return <SwitchComponent unit="CELSIUS" />;
+    return <SwitchComponent unit={stateData.currentUnit} handleChange={stateData.handleChange} />;
   }
   return null;
 };
@@ -35,7 +48,24 @@ const getIconElement = (status: LocationFetchStatus, data: WeatherData) => {
   return <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder" />;
 };
 
-class CardFrameComponent extends React.Component<CardFrameProps, {}> {
+class CardFrameComponent extends React.Component<CardFrameProps, CardFrameState> {
+  constructor(props) {
+    super(props);
+    this.switchUnits = this.switchUnits.bind(this);
+
+    this.state = {
+      currentUnit: 'CELSIUS',
+      handleChange: this.switchUnits,
+    };
+  }
+
+  switchUnits(event: MouseEvent): void {
+    event.preventDefault();
+    this.setState((prevState) => ({
+      currentUnit: invertUnit(prevState.currentUnit),
+    }));
+  }
+
   render() {
     return (
       <LocationContext.Consumer>
@@ -64,13 +94,13 @@ class CardFrameComponent extends React.Component<CardFrameProps, {}> {
                     </div>
                   </div>
                   {
-                    displayCardContent(status, data, currentDate)
+                    displayCardContent(status, data, currentDate, this.state.currentUnit)
                   }
                 </div>
                 <footer className="card-footer">
                   <a href="https://github.com/arvind0598/weathermachine" className="card-footer-item"> View Source </a>
                   {
-                    displaySwitchComponent(status)
+                    displaySwitchComponent(status, this.state)
                   }
                 </footer>
               </div>
