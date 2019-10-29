@@ -10,7 +10,7 @@ export type ReadyCardProps = {
 
 const getTemperatureValues = (tempKelvin: number): Array<string> => {
   const tempCelsius = tempKelvin - 273.15;
-  const tempFarenheit = (tempCelsius - 32) / 1.8;
+  const tempFarenheit = (tempCelsius * 1.8) + 32;
   const degree = String.fromCharCode(176);
   return [`${tempCelsius} ${degree}C`, `${tempFarenheit} ${degree}F`];
 };
