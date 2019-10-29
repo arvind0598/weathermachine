@@ -28,3 +28,20 @@ export const getTemperatureValues = (tempKelvin: number): Array<string> => {
   return [`${tempCelsius} ${degree}C`, `${tempFarenheit} ${degree}F`];
 };
 
+export const getWeatherClass = (weatherCode: number): string => {
+  if (weatherCode === 800) {
+    return 'has-gradient-clear';
+  }
+
+  const weatherGroup = Math.floor(weatherCode / 100);
+  let weatherClass: string;
+  switch (weatherGroup) {
+    case 2: weatherClass = 'thunderstorm'; break;
+    case 3: weatherClass = 'drizzle'; break;
+    case 5: weatherClass = 'rain'; break;
+    case 6: weatherClass = 'snow'; break;
+    case 8: weatherClass = 'clouds'; break;
+    default: weatherClass = 'none';
+  }
+  return `has-gradient-${weatherClass}`;
+};

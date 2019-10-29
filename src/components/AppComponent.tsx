@@ -3,7 +3,7 @@ import React from 'react';
 import { LocationFetchStatus, WeatherData } from '../types';
 import LocationContext, { LocationContextType } from '../context/LocationContext';
 import CardFrame from './CardComponent/CardFrame';
-import { getCurrentDateString, prepareWeatherData } from '../utils';
+import { getCurrentDateString, prepareWeatherData, getWeatherClass } from '../utils';
 
 type AppComponentState = {
   status: LocationFetchStatus;
@@ -78,9 +78,10 @@ class AppComponent extends React.Component<AppComponentProps, AppComponentState>
   render() {
     const { status, weatherData } = this.state;
     const contextValue: LocationContextType = { status, data: weatherData };
+    const heroClass = `hero is-fullheight ${weatherData && getWeatherClass(weatherData.weatherCode)}`;
     return (
       <LocationContext.Provider value={contextValue}>
-        <div className="hero is-bold is-fullheight">
+        <div className={heroClass}>
           <div className="hero-body">
             <div className="container">
               <div className="columns is-vcentered">
