@@ -23,10 +23,11 @@ class SwitchComponent extends React.Component<TemperatureProps, TemperatureState
 
   render() {
     const { unit } = this.state;
+    const contextValue = unit;
     return (
-      <UnitsContext.Provider value={unit}>
+      <UnitsContext.Provider value={contextValue}>
         <a href="#" className="card-footer-item is-capitalized" onClick={this.switchUnits}>
-          Switch to {unit.toLowerCase()}
+          Switch to {invertUnit(unit).toLowerCase()}
         </a>
       </UnitsContext.Provider>
     );

@@ -12,10 +12,9 @@ type CardFrameProps = {
 
 const displayCardContent = (status: LocationFetchStatus, data: WeatherData, currentDate: string) => {
   if (status === 'FETCHED') {
-    const temperatureInfo = `Seems to be about ${data.temperature} degrees outside.`;
     return (
       <ReadyCard
-        temperatureInfo={temperatureInfo}
+        temperatureKelvin={data.temperature}
         weatherInfo={data.weatherName}
         currentDate={currentDate}
       />
