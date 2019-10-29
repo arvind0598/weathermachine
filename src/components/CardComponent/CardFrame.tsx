@@ -5,6 +5,7 @@ import { LocationFetchStatus, WeatherData, TemperatureUnits } from '../../types'
 import SwitchComponent from './SwitchComponent';
 import LoadingCard from './LoadingCard';
 import ReadyCard from './ReadyCard';
+import { invertUnit } from '../../utils';
 
 type CardFrameProps = {
   currentDate: string;
@@ -14,8 +15,6 @@ type CardFrameState = {
   currentUnit: TemperatureUnits;
   handleChange: Function;
 };
-
-const invertUnit = (unit: TemperatureUnits): TemperatureUnits => (unit === 'CELSIUS' ? 'FARENHEIT' : 'CELSIUS');
 
 const displayCardContent = (
   status: LocationFetchStatus,

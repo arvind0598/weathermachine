@@ -3,17 +3,7 @@ import React from 'react';
 import { LocationFetchStatus, WeatherData } from '../types';
 import LocationContext, { LocationContextType } from '../context/LocationContext';
 import CardFrame from './CardComponent/CardFrame';
-
-const getCurrentDateString = (): string => {
-  const dateOptions: Intl.DateTimeFormatOptions = {
-    year: 'numeric',
-    month: 'long',
-    day: '2-digit',
-    hour: '2-digit',
-    minute: '2-digit',
-  };
-  return new Date().toLocaleString('en-US', dateOptions);
-};
+import { getCurrentDateString, prepareWeatherData } from '../utils';
 
 type AppComponentState = {
   status: LocationFetchStatus;
@@ -66,13 +56,7 @@ class AppComponent extends React.Component<AppComponentProps, AppComponentState>
     fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&APPID=${API_KEY}`)
       .then((data) => data.json())
       .then((data) => {
-        const weatherData: WeatherData = {
-          location: data.name,
-          temperature: data.main.temp,
-          weatherCode: data.weather[0].id,
-          weatherName: data.weather[0].main,
-          weatherIcon: data.weather[0].icon,
-        };
+        const weatherData = prepareWeatherData(data);
         this.setState({
           status: 'FETCHED',
           weatherData,
