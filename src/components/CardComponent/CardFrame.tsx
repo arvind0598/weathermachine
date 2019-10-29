@@ -72,6 +72,7 @@ class CardFrameComponent extends React.Component<CardFrameProps, CardFrameState>
           (context: LocationContextType) => {
             const { status, data } = context;
             const { currentDate } = this.props;
+            const { currentUnit } = this.state;
             return (
               <div className="card">
                 <div className="card-content">
@@ -93,7 +94,7 @@ class CardFrameComponent extends React.Component<CardFrameProps, CardFrameState>
                     </div>
                   </div>
                   {
-                    displayCardContent(status, data, currentDate, this.state.currentUnit)
+                    displayCardContent(status, data, currentDate, currentUnit)
                   }
                 </div>
                 <footer className="card-footer">
