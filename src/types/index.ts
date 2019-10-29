@@ -1,32 +1,14 @@
-// CARD COMPONENT
-
-export type CardComponentProps = {
-  temperature: number;
-  location: string;
-  currentDate: string;
-};
-
-export type CardComponentState = {
-  temperatureInfo: string;
-  weatherInfo: string;
-};
-
-// SWITCH COMPONENT
-
 export type TemperatureUnits = 'CELSIUS' | 'FARENHEIT';
 
-export type TemperatureProps = {
-  unit: TemperatureUnits;
-};
-
-export type TemperatureState = TemperatureProps;
-
-// LOCATION WRAPPER
-
+/**
+ * @see LoadingCard for a brief description about these states.
+ */
 export type LocationFetchStatus = 'REQUESTING' | 'FETCHED' | 'FETCH_FAILED' | 'DENIED' | 'FETCHING';
 
-// RESPONSE DATA
-
+/**
+ * @see AppComponent to know how the API response is converted into this.
+ * its also used in @see LocationContext to propagate changes.
+ */
 export type WeatherData = {
   location: string;
   temperature: number;
