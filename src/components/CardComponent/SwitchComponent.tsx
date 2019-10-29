@@ -1,5 +1,6 @@
 import React from 'react';
 import { TemperatureUnits, TemperatureProps, TemperatureState } from '../../types';
+import UnitsContext from '../../context/UnitsContext';
 
 const invertUnit = (unit: TemperatureUnits): TemperatureUnits => (unit === 'CELSIUS' ? 'FARENHEIT' : 'CELSIUS');
 
@@ -8,7 +9,7 @@ class SwitchComponent extends React.Component<TemperatureProps, TemperatureState
     super(props);
     const { unit } = props;
     this.state = {
-      unit: unit === 'FARENHEIT' ? 'CELSIUS' : 'FARENHEIT',
+      unit: unit === 'FARENHEIT' ? 'FARENHEIT' : 'CELSIUS',
     };
     this.switchUnits = this.switchUnits.bind(this);
   }
@@ -23,10 +24,11 @@ class SwitchComponent extends React.Component<TemperatureProps, TemperatureState
   render() {
     const { unit } = this.state;
     return (
-      // eslint-disable-next-line jsx-a11y/anchor-is-valid
-      <a href="#" className="card-footer-item is-capitalized" onClick={this.switchUnits}>
-        Switch to {unit.toLowerCase()}
-      </a>
+      <UnitsContext.Provider value={unit}>
+        <a href="#" className="card-footer-item is-capitalized" onClick={this.switchUnits}>
+          Switch to {unit.toLowerCase()}
+        </a>
+      </UnitsContext.Provider>
     );
   }
 }
